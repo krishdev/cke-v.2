@@ -77,7 +77,7 @@
             
                 <article class="col-md-3">
                     <figure>
-                        <img src="https://farm1.staticflickr.com/979/40967009135_5d01ecf38a_o.jpg">
+                        <img src="../assets/img/about/members/06.jpg">
                     </figure>
                 </article>
                 <article class="col-md-3">
@@ -90,12 +90,21 @@
                     </figure>
                 </article><article class="col-md-3">
                     <figure>
-                        <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1632b60a81b%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1632b60a81b%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.4296875%22%20y%3D%22104.5%22%3EJoin%20us%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+                        <a href="/#/contact">
+                          <img src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1632b60a81b%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1632b60a81b%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.4296875%22%20y%3D%22104.5%22%3EJoin%20us%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+                        </a>
                     </figure>
                 </article>
               </div>
         </section>
-    </div>
+    </div>  
+    <!-- <section v-if="indexBanner">
+      <figure v-modal-box :data-modal="indexSrc.index.src">
+        <a href="javascript:;">
+          <img :src="indexSrc.index.src" style="width:100%"/>
+        </a>
+      </figure>      
+    </section>  --> 
   </section>
 </template>
 
@@ -105,10 +114,14 @@ import { db } from '../main'
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import { sendEmail } from './common'
+import {modalBox} from './modelBox.js'
 
 export default{
   name:"home",
   mixins: [validationMixin],
+  directives:{
+    modalBox
+  },
   data() {
     return {
       articles:[],
@@ -121,7 +134,9 @@ export default{
         subTitle:"Every child deserves education."
       },
       mailTo:"mailto:chottukiedu@gmail.com",
-      emailError:false
+      emailError:false,
+      indexBanner: false,
+      indexSrc:{}
     }
   },
   validations:{
@@ -137,7 +152,13 @@ export default{
     var self = this;
     db.ref().child("posts").limitToLast(3).on("child_added", function(response){              
         self.articles.push(response.val());              
-    }) 
+    })
+     db.ref("banner").on("value", function(response){
+        self.indexSrc = response.val();  
+        if(self.indexSrc.index.src !== '') {
+          self.indexBanner = true;
+        }
+      });
   },
   methods:{
     submit: function(){
@@ -161,7 +182,7 @@ export default{
   }
 };
 </script>
-<style>
+<style scoped>
   section.member {
       margin-top: 3em;
   }
@@ -185,12 +206,20 @@ export default{
       display: inline-block;
   }
   .clearfix{margin: 1em 0;}
-</style>
-<style <style scoped>
+
   .help-block{
     text-align: center;
     margin-top: 0.2em;
     font-size: 0.8em;
     margin-bottom: 0;
+  }
+  .member .row article {
+    overflow: hidden;
+  }
+  .member .row article:first-child img{
+    transform: scale(1.8);
+  }
+  @media (max-width:767px) {
+    .member .row article {padding: 0;margin-bottom: 10px;}
   }
 </style>

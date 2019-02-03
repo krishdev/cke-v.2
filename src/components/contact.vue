@@ -129,7 +129,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 form#contactForm, p.help-block.text-danger{
     text-align: left!important;
 }

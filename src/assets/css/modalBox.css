@@ -1,0 +1,89 @@
+figure{
+  margin:0;
+  padding:0;
+}
+img{width:100%;}
+div#modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+div#modal.show{
+    display:block;
+}
+section.modald {
+    margin: 0 10%;
+    position: relative;
+    box-shadow: rgb(255, 255, 255) -1px -1px 15px 0px;
+    margin: 0 auto;
+    width:90%;
+}
+.modald header,.modald footer {
+  padding: 0;
+  margin:0;
+}
+@media (min-width: 1060px) {
+  section.modald {width: 52%;}
+}
+a.btn-close {
+    color: #fff;
+    background: #000;
+    padding: 3px 7px;
+    border-radius: 53px;
+    font-size: 12px;
+    position: absolute;
+    top: -7px;
+    right: -12px;
+}
+a.btn-close:hover {
+  color:#000;
+  background: #fff;
+}
+.hideBtn a.btn-previous, .hideBtn a.btn-next {display:none;}
+a.btn-previous,a.btn-next {
+    position: absolute;
+    top: 40%;
+    color:#fff;
+}
+a.btn-previous{
+  left:0;
+  margin-left:1em;
+}
+a.btn-next{
+    right:0;
+    margin-right:1em;
+}
+a.btn-previous:hover, a.btn-next:hover{
+  color: rgb(229, 255, 213);
+}

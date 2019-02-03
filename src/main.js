@@ -9,7 +9,6 @@ import VueResource from 'vue-resource'
 import App from './App'
 import router from './router'
 
-var fancybox = require('fancybox')($);
 
 Vue.use(VueResource);
 Vue.use(VueFire)
@@ -21,7 +20,7 @@ firebase.initializeApp({
   storageBucket: "chotukiedu.appspot.com",
   messagingSenderId: "449693301627"
 })
-
+window.fancybox = require("fancybox")($);
 export const db = firebase.database()
 export const fb = firebase.auth()
 window.db = db;

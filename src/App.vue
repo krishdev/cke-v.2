@@ -25,6 +25,7 @@ export default {
   @import '/plugins/font-awesome/css/font-awesome.css';
   @import 'bootstrap';
    @import '/assets/css/clean-blog.min.css';
+   @import '/assets/css/modalBox.css';
  body{
      overflow-x: hidden;
  } 

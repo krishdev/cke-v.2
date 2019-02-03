@@ -9,7 +9,8 @@ import Gallery from '@/components/gallery'
 import Member from '@/components/Join'
 import About from '@/components/about'
 import Contact from '@/components/contact'
-
+import Timeline from '@/components/Timeline'
+import Press from '@/components/Press'
 Vue.use(Router)
 
 const router = new Router({
@@ -53,6 +54,16 @@ const router = new Router({
         path:"/contact",
         name:"Contact",
         component:Contact
+    },        
+    {
+        path:"/timeline",
+        name:"Timeline",
+        component:Timeline
+    },      
+    {
+        path:"/press",
+        name:"press",
+        component:Press
     }
     
   ]
